@@ -1,0 +1,19 @@
+{
+    "security": {
+        "auth": {
+            "selectedType": "oauth-personal"
+        }
+    },
+    "mcpServers": {
+        "tooluniverse": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "D:\\_Code\\_GitHub\\ToolUniverse-1022\\eval",
+                "run",
+                "tooluniverse-smcp-stdio"
+            ],
+			"timeout": 30000
+        }
+    }
+}

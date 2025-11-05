@@ -1,0 +1,32 @@
+> What scientific tools are available?
+✦ The ToolUniverse provides a wide range of scientific tools for research. Here are some of the main categories:
+
+   * Drug Discovery and Pharmacology: Tools for drug discovery, including target validation, drug-target
+     interaction, and adverse event reporting. Examples: OpenTargets, DrugBank, FAERS, ADMET-AI.
+
+   * Genomics and Proteomics: Tools for genomics and proteomics research, such as protein structure prediction,
+     genome-wide association studies, and protein database search. Examples: AlphaFold, GWAS, Human Protein
+     Atlas (HPA), UniProt, Gene Ontology (GO), Protein Data Bank (PDB).
+
+   * Bioinformatics Databases: Access to various bioinformatics databases. Examples: Reactome (biological
+     pathways), Cellosaurus (cell lines), MeSH (Medical Subject Headings).
+
+   * Scientific Literature Search: Tools to search for scientific articles and publications. Examples: PubMed,
+     EuropePMC, Semantic Scholar, Google Scholar.
+
+   * Molecular and Structural Visualization: Tools for visualizing molecules and protein structures in 2D and
+     3D.
+
+   * Astronomy and Physics: Libraries for astronomy and physics research. Examples: Astropy, Sunpy, Galpy,
+     PyEphem, QuTiP.
+
+   * Geospatial Analysis: Tools for geospatial data analysis. Examples: xesmf, rasterio, geopandas, cartopy.
+
+   * Neuroscience: Tools for neuroscience research and data analysis. Examples: MNE, Nilearn, Brian2, Elephant,
+     Neo.
+
+   * Clinical Trials: Tools for searching and analyzing clinical trial data.
+
+  You can use the find_tools command to search for specific tools by keyword. For example: find_tools
+  query="protein structure".
+--------------------------------------------------------

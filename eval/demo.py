@@ -16,8 +16,8 @@ tools = tu.run(
         "arguments": {"description": "disease target associations", "limit": 10},
     }
 )
-print(tools)
-print("----")
+print(f"tools: {tools}")
+print("--------------------------------")
 
 # 4. Use Call Tool operation to execute selected tool
 result = tu.run(
@@ -26,6 +26,6 @@ result = tu.run(
         "arguments": {"efoId": "EFO_0000537"},  # hypertension
     }
 )
-print(result)
+print(f"result: {result}")
 
 # python demo.py

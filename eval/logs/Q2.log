@@ -1,0 +1,647 @@
+> Search for information about Alzheimer's disease
+
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  OpenTargets_get_disease_id_description_by_name (tooluniverse MCP Server) {"diseaseName":"Alzheimer's d… │
+│                                                                                                            │
+│    ... first 71 lines hidden ...                                                                           │
+│              "name": "neuritic plaque measurement",                                                        │
+│              "description": "quantification of  neuritic (senile) plaques in the brain, Senile plaques     │
+│    (also known as neuritic plaques, senile druse and braindruse) are extracellular deposits of amyloid     │
+│    beta in the grey matter of the brain.[1][2] Degenerative neural structures and an abundance of          │
+│    microglia and astrocytes can be associated with senile plaque deposits. These deposits can also be a    │
+│    byproduct of senescence (ageing). However, large numbers of senile plaques and neurofibrillary tangles  │
+│    are characteristic features of Alzheimer's disease. Abnormal neurites in senile plaques are composed    │
+│    primarily of paired helical filaments, a component of neurofibrillary tangles.[3] The plaques are       │
+│    variable in shape and size, but are on average 50 \u00b5m in size.[4] In Alzheimer's disease they are   │
+│    primarily composed of amyloid beta peptides."                                                           │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0004840",                                                                          │
+│              "name": "cortical thickness",                                                                 │
+│              "description": "Is a quantification of the thickness of brain cortex, e.g. measured by MRI,   │
+│    used in the diagnosis of Alzheimer's disease and other neurological conditions"                         │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0011057",                                                                          │
+│              "name": "neurotoxicity",                                                                      │
+│              "description": "Toxicity that causes injury to the central or peripheral nervous system or    │
+│    damages its function. This can include stroke, multiple sclerosis, encephalopathy, dementia,            │
+│    Alzheimer's disease, amnesia, dyskinesia, Parkinson's disease, tremor, convulsions and Guillain Barre   │
+│    syndrome. "                                                                                             │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0007646",                                                                          │
+│              "name": "amyloid plaque accumulation rate",                                                   │
+│              "description": "quantification of accumulation of amyloid plaques in the brain over a long    │
+│    period of time (typically several years), measured by using PET scan imaging technology. The            │
+│    accumulation of amyloid plaques can be a biomarker for Alzheimer's disease"                             │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0004874",                                                                          │
+│              "name": "memory performance",                                                                 │
+│              "description": "Is a quantification of a subject's activities involved in the mental          │
+│    information processing system that receives (registers), modifies, stores, and retrieves informational  │
+│    stimuli. Memory performance is typically assessed by some clinical memory test and is used in the       │
+│    diagnosis of diseases such as Alzheimer's disease."                                                     │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0010151",                                                                          │
+│              "name": "soluble triggering receptor expressed on myeloid cells 2 measurement",               │
+│              "description": "Quantification of the amount of soluble TREM2 (triggering receptor expressed  │
+│    on myeloid cells 2) protein in a sample. Cerebrospinal fluid sTREM2 is used as a biomarker of disease   │
+│    pathogenesis in Alzheimer's disease."                                                                   │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0004670",                                                                          │
+│              "name": "beta-amyloid 1-42 measurement",                                                      │
+│              "description": "Is the quantification of Beta-amyloid 1-42 in cerebrospinal fluid typically   │
+│    used as a biomarker for Alzheimer's Disease"                                                            │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0004760",                                                                          │
+│              "name": "t-tau measurement",                                                                  │
+│              "description": "Is a quantification of total tau protein, a biomarker for Alzheimer's         │
+│    disease."                                                                                               │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0005194",                                                                          │
+│              "name": "amyloid-beta measurement",                                                           │
+│              "description": "quantification of the amyloid-beta, either in a sample of cerebro-spinal      │
+│    fluid or via PET scan, used as a biomarker for Alzheimer's disease"                                     │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0005660",                                                                          │
+│              "name": "plasma beta-amyloid 1-42 measurement",                                               │
+│              "description": "Is the quantification of Beta-amyloid 1-42 in plasma, typically used as a     │
+│    biomarker for Alzheimer's Disease"                                                                      │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0000699",                                                                          │
+│              "name": "Sjogren syndrome",                                                                   │
+│              "description": "Chronic inflammatory and autoimmune disease in which the salivary and         │
+│    lacrimal glands undergo progressive destruction by lymphocytes and plasma cells resulting in decreased  │
+│    production of saliva and tears. The primary form, often called sicca syndrome, involves both            │
+│    KERATOCONJUNCTIVITIS SICCA and XEROSTOMIA. The secondary form includes, in addition, the presence of a  │
+│    connective tissue disease, usually rheumatoid arthritis."                                               │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0007710",                                                                          │
+│              "name": "cognitive decline measurement",                                                      │
+│              "description": "quantification of some aspect of cognitive decline such as the rate at which  │
+│    it occurs or its severity, for example in patients with dementia or Alzheimer's disease. Cognitive      │
+│    decline is ususally assessed using a structured-interview protocol covering a number of standardised    │
+│    areas."                                                                                                 │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0004763",                                                                          │
+│              "name": "p-tau measurement",                                                                  │
+│              "description": "Is a quantification of phosphorylated tau protein, used as a biomarker for    │
+│    Alzheimer's disease."                                                                                   │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "EFO_0009179",                                                                          │
+│              "name": "beta-secretase 1 measurement",                                                       │
+│              "description": "Quantification of the amount of beta-secretase 1 in a sample, typicallly      │
+│    cerebrospinal fluid. Beta-secretase-1 is an aspartic-acid protease important in the formation of myelin │
+│    sheaths in peripheral nerve cells, and is thought to have a role in Alzheimer's disease pathogenesis."  │
+│            },                                                                                              │
+│            {                                                                                               │
+│              "id": "MONDO_0024625",                                                                        │
+│              "name": "disorder of lacrimal gland",                                                         │
+│              "description": "A disease that involves the lacrimal gland."                                  │
+│            }                                                                                               │
+│          ]                                                                                                 │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    }                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  OpenTargets_get_associated_targets_by_disease_efoId (tooluniverse MCP Server) {"efoId":"MONDO_0004975"} │
+│                                                                                                            │
+│    ... first 78 lines hidden ...                                                                           │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000114200",                                                                  │
+│                  "approvedSymbol": "BCHE"                                                                  │
+│                },                                                                                          │
+│                "score": 0.620249600375919                                                                  │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000159640",                                                                  │
+│                  "approvedSymbol": "ACE"                                                                   │
+│                },                                                                                          │
+│                "score": 0.6176415201304783                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000273079",                                                                  │
+│                  "approvedSymbol": "GRIN2B"                                                                │
+│                },                                                                                          │
+│                "score": 0.6097120570955326                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000176749",                                                                  │
+│                  "approvedSymbol": "CDK5R1"                                                                │
+│                },                                                                                          │
+│                "score": 0.6074644588169549                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000010704",                                                                  │
+│                  "approvedSymbol": "HFE"                                                                   │
+│                },                                                                                          │
+│                "score": 0.604313672707205                                                                  │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000101224",                                                                  │
+│                  "approvedSymbol": "CDC25B"                                                                │
+│                },                                                                                          │
+│                "score": 0.598527591199878                                                                  │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000105464",                                                                  │
+│                  "approvedSymbol": "GRIN2D"                                                                │
+│                },                                                                                          │
+│                "score": 0.597221951945006                                                                  │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000183454",                                                                  │
+│                  "approvedSymbol": "GRIN2A"                                                                │
+│                },                                                                                          │
+│                "score": 0.5966500414884671                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000138613",                                                                  │
+│                  "approvedSymbol": "APH1B"                                                                 │
+│                },                                                                                          │
+│                "score": 0.5964544517246868                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000198785",                                                                  │
+│                  "approvedSymbol": "GRIN3A"                                                                │
+│                },                                                                                          │
+│                "score": 0.5921984662871365                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000161509",                                                                  │
+│                  "approvedSymbol": "GRIN2C"                                                                │
+│                },                                                                                          │
+│                "score": 0.5919963523636346                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000030582",                                                                  │
+│                  "approvedSymbol": "GRN"                                                                   │
+│                },                                                                                          │
+│                "score": 0.5896728389078704                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000116032",                                                                  │
+│                  "approvedSymbol": "GRIN3B"                                                                │
+│                },                                                                                          │
+│                "score": 0.5892712489835275                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000146904",                                                                  │
+│                  "approvedSymbol": "EPHA1"                                                                 │
+│                },                                                                                          │
+│                "score": 0.5888571721590647                                                                 │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000113161",                                                                  │
+│                  "approvedSymbol": "HMGCR"                                                                 │
+│                },                                                                                          │
+│                "score": 0.5865220090871499                                                                 │
+│              }                                                                                             │
+│            ]                                                                                               │
+│          }                                                                                                 │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    }                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  OpenTargets_get_associated_drugs_by_disease_efoId (tooluniverse MCP Server) {"efoId":"MONDO_0004975","… │
+│                                                                                                            │
+│    ... first 13427 lines hidden ...                                                                        │
+│                  "tradeNames": [                                                                           │
+│                    "Marplan"                                                                               │
+│                  ],                                                                                        │
+│                  "maximumClinicalTrialPhase": 4,                                                           │
+│                  "isApproved": true,                                                                       │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Completed",                                                                      │
+│                "mechanismOfAction": "Monoamine oxidase inhibitor",                                         │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000069535",                                                                  │
+│                  "approvedSymbol": "MAOB"                                                                  │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "drug": {                                                                                   │
+│                  "id": "CHEMBL1201168",                                                                    │
+│                  "name": "ISOCARBOXAZID",                                                                  │
+│                  "tradeNames": [                                                                           │
+│                    "Marplan"                                                                               │
+│                  ],                                                                                        │
+│                  "maximumClinicalTrialPhase": 4,                                                           │
+│                  "isApproved": true,                                                                       │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Completed",                                                                      │
+│                "mechanismOfAction": "Monoamine oxidase inhibitor",                                         │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000189221",                                                                  │
+│                  "approvedSymbol": "MAOA"                                                                  │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "drug": {                                                                                   │
+│                  "id": "CHEMBL10316",                                                                      │
+│                  "name": "IDAZOXAN",                                                                       │
+│                  "maximumClinicalTrialPhase": 3,                                                           │
+│                  "isApproved": false,                                                                      │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Completed",                                                                      │
+│                "mechanismOfAction": "Adrenergic receptor alpha-2 antagonist",                              │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000150594",                                                                  │
+│                  "approvedSymbol": "ADRA2A"                                                                │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "drug": {                                                                                   │
+│                  "id": "CHEMBL10316",                                                                      │
+│                  "name": "IDAZOXAN",                                                                       │
+│                  "maximumClinicalTrialPhase": 3,                                                           │
+│                  "isApproved": false,                                                                      │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Completed",                                                                      │
+│                "mechanismOfAction": "Adrenergic receptor alpha-2 antagonist",                              │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000274286",                                                                  │
+│                  "approvedSymbol": "ADRA2B"                                                                │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "drug": {                                                                                   │
+│                  "id": "CHEMBL10316",                                                                      │
+│                  "name": "IDAZOXAN",                                                                       │
+│                  "maximumClinicalTrialPhase": 3,                                                           │
+│                  "isApproved": false,                                                                      │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Terminated",                                                                     │
+│                "mechanismOfAction": "Adrenergic receptor alpha-2 antagonist",                              │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000274286",                                                                  │
+│                  "approvedSymbol": "ADRA2B"                                                                │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "drug": {                                                                                   │
+│                  "id": "CHEMBL109",                                                                        │
+│                  "name": "VALPROIC ACID",                                                                  │
+│                  "tradeNames": [                                                                           │
+│                    "Convulex",                                                                             │
+│                    "Depakene",                                                                             │
+│                    "Depakote",                                                                             │
+│                    "Stavzor",                                                                              │
+│                    "Valproic acid"                                                                         │
+│                  ],                                                                                        │
+│                  "maximumClinicalTrialPhase": 4,                                                           │
+│                  "isApproved": true,                                                                       │
+│                  "hasBeenWithdrawn": false                                                                 │
+│                },                                                                                          │
+│                "phase": 0.5,                                                                               │
+│                "status": "Completed",                                                                      │
+│                "mechanismOfAction": "Succinate semialdehyde dehydrogenase inhibitor",                      │
+│                "target": {                                                                                 │
+│                  "id": "ENSG00000112294",                                                                  │
+│                  "approvedSymbol": "ALDH5A1"                                                               │
+│                }                                                                                           │
+│              }                                                                                             │
+│            ]                                                                                               │
+│          }                                                                                                 │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    }                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  OpenTargets_get_associated_phenotypes_by_disease_efoId (tooluniverse MCP Server) {"efoId":"MONDO_00049… │
+│                                                                                                            │
+│    ... first 69 lines hidden ...                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0002423",                                                                       │
+│                  "name": "Long-tract sign",                                                                │
+│                  "description": "Long-tract signs refer to symptoms that are attributable to the           │
+│    involvement of the long fiber tracts in the spinal cord, which connect the spinal cord to the brain and │
+│    mediate spinal and motor functions. These include spasticity, hyperreflexia, and abnormal reflexes such │
+│    as Babinski or Hoffman's sign. If possible, it is preferable to use the precise HPO terms for these     │
+│    abnormalities."                                                                                         │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0001300",                                                                       │
+│                  "name": "Parkinsonism",                                                                   │
+│                  "description": "Characteristic neurologic anomaly resulting from degeneration of          │
+│    dopamine-generating cells in the substantia nigra, a region of the midbrain, characterized clinically   │
+│    by shaking, rigidity, slowness of movement and difficulty with walking and gait."                       │
+│                },                                                                                          │
+│                "phenotypeEFO": {                                                                           │
+│                  "id": "HP_0001300",                                                                       │
+│                  "name": "Parkinsonism"                                                                    │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0002185",                                                                       │
+│                  "name": "Neurofibrillary tangles",                                                        │
+│                  "description": "Pathological protein aggregates formed by hyperphosphorylation of a       │
+│    microtubule-associated protein known as tau, causing it to aggregate in an insoluble form."             │
+│                },                                                                                          │
+│                "phenotypeEFO": {                                                                           │
+│                  "id": "HP_0002185",                                                                       │
+│                  "name": "Neurofibrillary tangles"                                                         │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0003584",                                                                       │
+│                  "name": "Late onset",                                                                     │
+│                  "description": "A type of adult onset with onset of symptoms after the age of 60 years."  │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0002511",                                                                       │
+│                  "name": "Alzheimer disease",                                                              │
+│                  "description": "A degenerative disease of the brain characterized by the insidious onset  │
+│    of dementia. Impairment of memory, judgment, attention span, and problem solving skills are followed by │
+│    severe apraxia and a global loss of cognitive abilities. The condition primarily occurs after age 60,   │
+│    and is marked pathologically by severe cortical atrophy and the triad of senile plaques,                │
+│    neurofibrillary tangles, and neuropil threads."                                                         │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0410170",                                                                       │
+│                  "name": "Hippocampal atrophy",                                                            │
+│                  "description": "Partial or complete wasting (loss) of hippocampus tissue that was once    │
+│    present."                                                                                               │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0003581",                                                                       │
+│                  "name": "Adult onset",                                                                    │
+│                  "description": "Onset of disease manifestations in adulthood, defined here as at the age  │
+│    of 16 years or later."                                                                                  │
+│                },                                                                                          │
+│                "phenotypeEFO": {                                                                           │
+│                  "id": "HP_0003581",                                                                       │
+│                  "name": "Adult onset"                                                                     │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0002120",                                                                       │
+│                  "name": "Cerebral cortical atrophy",                                                      │
+│                  "description": "Atrophy of the cortex of the cerebrum."                                   │
+│                },                                                                                          │
+│                "phenotypeEFO": {                                                                           │
+│                  "id": "HP_0002120",                                                                       │
+│                  "name": "Cerebral cortical atrophy"                                                       │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0000716",                                                                       │
+│                  "name": "Depression",                                                                     │
+│                  "description": "Frequently experiencing feelings of being down, miserable, and/or         │
+│    hopeless; struggling to recover from these moods; having a pessimistic outlook on the future; feeling a │
+│    pervasive sense of shame; having a low self-worth; experiencing thoughts of suicide and engaging in     │
+│    suicidal behavior."                                                                                     │
+│                }                                                                                           │
+│              },                                                                                            │
+│              {                                                                                             │
+│                "phenotypeHPO": {                                                                           │
+│                  "id": "HP_0000734",                                                                       │
+│                  "name": "Disinhibition",                                                                  │
+│                  "description": "Reduced ability to control, or a failure to resist a temptation, urge, or │
+│    impulse. Examples include disregard for social conventions, general impulsivity, and poor risk          │
+│    assessment."                                                                                            │
+│                }                                                                                           │
+│              }                                                                                             │
+│            ]                                                                                               │
+│          }                                                                                                 │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    }                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  EuropePMC_search_articles (tooluniverse MCP Server) {"limit":10,"query":"Alzheimer's disease"}          │
+│                                                                                                            │
+│    ... first 410 lines hidden ...                                                                          │
+│        }                                                                                                   │
+│      },                                                                                                    │
+│      {                                                                                                     │
+│        "title": "Neural flexibility is higher in Alzheimer's disease and predicts Alzheimer's disease      │
+│    transition.",                                                                                           │
+│        "abstract": "BackgroundNeural flexibility (NF), a measure of dynamic functional connectivity, was   │
+│    associated with psychiatric diseases but has not yet been studied in Alzheimer's disease                │
+│    (AD).ObjectiveWe aim to evaluate whether AD is associated with alterations in NF and probe its          │
+│    predictive utility for AD conversion.MethodThe study included 862 older adults (461 cognitively normal  │
+│    (CN), 294 mild cognitive impairment (MCI), 107 AD) with valid resting-state fMRI data from the          │
+│    Alzheimer's Disease Neuroimaging Initiative. We defined the NF of a node as the number of times that a  │
+│    node changed its community assignment across the sliding windows, normalized by the total number of     │
+│    possible changes. We computed global NF and 12 functional network-specific NFs, then performed linear   │
+│    mixed models on NFs separately to explore the differences in these measures between our three groups.   │
+│    Finally, we evaluated the predictive utility of NF on dementia transition using survival                │
+│    analysis.ResultsNF is significantly higher in AD than CN on global NF (\u03b2\u2009=\u20090.002, 95% CI │
+│    0.001 to 0.004), and NF in six networks, and NF is significantly higher in MCI than CN in the visual    │
+│    network. Among n\u2009=\u2009617 non-demented participants at baseline, n\u2009=\u200953 (8.6%)         │
+│    participants converted to dementia during the follow-up visits. Higher NF in the visual network was     │
+│    positively associated with AD transition (HR\u2009=\u20091.323, 95%CI 1.002 to 1.747,                   │
+│    p\u2009=\u20090.049, per 1 SD in NF), controlling for age, gender, and education.ConclusionsWe found    │
+│    that NF during rest was higher in AD patients and predicted dementia transition. Thus, NF may be a      │
+│    valuable biomarker of AD; however, more validation and mechanistic studies need to be performed.",      │
+│        "authors": [                                                                                        │
+│          "Varangis E",                                                                                     │
+│          "Liu J",                                                                                          │
+│          "Miao Y",                                                                                         │
+│          "Zhu X",                                                                                          │
+│          "Stern Y",                                                                                        │
+│          "Lee S"                                                                                           │
+│        ],                                                                                                  │
+│        "journal": "J Alzheimers Dis",                                                                      │
+│        "year": "2025",                                                                                     │
+│        "doi": "10.1177/13872877251360025",                                                                 │
+│        "url": "https://europepmc.org/article/MED/40671553",                                                │
+│        "citations": 0,                                                                                     │
+│        "open_access": "N",                                                                                 │
+│        "keywords": "Keywords not available",                                                               │
+│        "source": "Europe PMC",                                                                             │
+│        "data_quality": {                                                                                   │
+│          "has_abstract": true,                                                                             │
+│          "has_authors": true,                                                                              │
+│          "has_journal": true,                                                                              │
+│          "has_year": true,                                                                                 │
+│          "has_doi": true,                                                                                  │
+│          "has_citations": false,                                                                           │
+│          "has_keywords": false,                                                                            │
+│          "has_url": true                                                                                   │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    ]                                                                                                       │
+│                                                                                                            │
+│ ✓  PubMed_search_articles (tooluniverse MCP Server) {"query":"Alzheimer's disease","limit":10}             │
+│                                                                                                            │
+│    ... first 302 lines hidden ...                                                                          │
+│        ],                                                                                                  │
+│        "journal": "Journal of neurology, neurosurgery, and psychiatry",                                    │
+│        "year": 2025,                                                                                       │
+│        "doi": "10.1136/jnnp-2025-336805",                                                                  │
+│        "url": "https://pubmed.ncbi.nlm.nih.gov/41188051/",                                                 │
+│        "citations": 0,                                                                                     │
+│        "open_access": false,                                                                               │
+│        "keywords": "Keywords not available",                                                               │
+│        "article_type": "Journal Article",                                                                  │
+│        "source": "PubMed",                                                                                 │
+│        "data_quality": {                                                                                   │
+│          "has_abstract": false,                                                                            │
+│          "has_authors": true,                                                                              │
+│          "has_journal": true,                                                                              │
+│          "has_year": true,                                                                                 │
+│          "has_doi": true,                                                                                  │
+│          "has_citations": false,                                                                           │
+│          "has_keywords": false,                                                                            │
+│          "has_url": true                                                                                   │
+│        }                                                                                                   │
+│      },                                                                                                    │
+│      {                                                                                                     │
+│        "title": "Targeting the C5-C5aR1 Axis: A promising therapeutic strategy for Alzheimer's disease and │
+│    amyotrophic lateral sclerosis by Unlocking Neuroprotection.",                                           │
+│        "abstract": "Abstract not available",                                                               │
+│        "authors": [                                                                                        │
+│          "Ge TQ",                                                                                          │
+│          "Wang P",                                                                                         │
+│          "Guan PP"                                                                                         │
+│        ],                                                                                                  │
+│        "journal": "Biochemical pharmacology",                                                              │
+│        "year": 2025,                                                                                       │
+│        "doi": "10.1016/j.bcp.2025.117518",                                                                 │
+│        "url": "https://pubmed.ncbi.nlm.nih.gov/41187881/",                                                 │
+│        "citations": 0,                                                                                     │
+│        "open_access": false,                                                                               │
+│        "keywords": "Keywords not available",                                                               │
+│        "article_type": "Journal Article",                                                                  │
+│        "source": "PubMed",                                                                                 │
+│        "data_quality": {                                                                                   │
+│          "has_abstract": false,                                                                            │
+│          "has_authors": true,                                                                              │
+│          "has_journal": true,                                                                              │
+│          "has_year": true,                                                                                 │
+│          "has_doi": true,                                                                                  │
+│          "has_citations": false,                                                                           │
+│          "has_keywords": false,                                                                            │
+│          "has_url": true                                                                                   │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    ]                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ I have gathered comprehensive information about Alzheimer's disease.
+
+  Disease Identification:
+   * EFO ID: MONDO_0004975
+   * Name: Alzheimer disease
+   * Description: A progressive, neurodegenerative disease characterized by loss of function and death of nerve
+     cells in several areas of the brain leading to loss of cognitive function such as memory and language.
+
+  Associated Targets:
+  There are 12874 associated targets. Some of the top targets include:
+   * PSEN1 (ENSG00000080815)
+   * APP (ENSG00000142192)
+   * PSEN2 (ENSG00000143801)
+   * APOE (ENSG00000130203)
+   * SORL1 (ENSG00000137642)
+   * GRIN1 (ENSG00000176884)
+   * CDK5 (ENSG00000164885)
+   * ADAM10 (ENSG00000137845)
+   * ABCA7 (ENSG00000064687)
+   * ACHE (ENSG00000087085)
+
+  Associated Drugs:
+  There are 673 associated drugs. Some notable examples include:
+   * DONEPEZIL HYDROCHLORIDE (CHEMBL1678): Approved, Phase 4, Acetylcholinesterase inhibitor, targets ACHE.
+   * MEMANTINE HYDROCHLORIDE (CHEMBL1699): Approved, Phase 4, Glutamate [NMDA] receptor negative allosteric
+     modulator, targets GRIN2D, GRIN2C, GRIN1, GRIN3A.
+   * ADUCANUMAB (CHEMBL3039540): Approved, Phase 4, Beta amyloid A4 protein binding agent, targets APP.
+   * LECANEMAB (CHEMBL3833321): Approved, Phase 4, Beta amyloid A4 protein inhibitor, targets APP.
+   * RIVASTIGMINE (CHEMBL636): Approved, Phase 4, Cholinesterases; ACHE & BCHE inhibitor, targets BCHE, ACHE.
+   * GALANTAMINE HYDROBROMIDE (CHEMBL1555): Approved, Phase 4, Acetylcholinesterase inhibitor, targets ACHE.
+   * SOLANEZUMAB (CHEMBL1743072): Not approved, Phase 3, Beta amyloid A4 protein binding agent, targets APP.
+   * DONANEMAB (CHEMBL4297245): Not approved, Phase 3, Beta amyloid A4 protein disrupting agent, targets APP.
+
+  Associated Phenotypes:
+  Key phenotypes associated with Alzheimer's disease include:
+   * Autosomal dominant inheritance (HP_0000006)
+   * Abnormality of extrapyramidal motor function (HP_0002071)
+   * Dementia (HP_0000726)
+   * Senile plaques (HP_0100256)
+   * Memory impairment (HP_0002354)
+   * Decreased circulating GABA concentration (HP_0410054)
+   * Long-tract sign (HP_0002423)
+   * Parkinsonism (HP_0001300)
+   * Neurofibrillary tangles (HP_0002185)
+   * Late onset (HP_0003584)
+   * Hippocampal atrophy (HP_0410170)
+   * Adult onset (HP_0003581)
+   * Cerebral cortical atrophy (HP_0002120)
+   * Depression (HP_0000716)
+   * Disinhibition (HP_0000734)
+
+  Recent Literature:
+  Several recent articles (from 2025 and 2026) were found, covering topics such as:
+   * Treatment strategies for Alzheimer's disease, including pharmacological and non-pharmacological approaches,
+     and the integration of anti-β amyloid monoclonal antibodies.
+   * Pathophysiology of Alzheimer's disease, focusing on amyloid-beta plaques, tau tangles, neuron loss, genetic
+     mutations, mitochondrial dysfunction, inflammation, oxidative stress, and metal imbalances.
+   * The role of brain cellular senescence and its interaction with Alzheimer's disease pathology.
+   * The dualistic roles of astrocytes and microglia in AD pathogenesis, highlighting their contributions to
+     pathology, synapse loss, demyelination, and neuroinflammation.
+   * New blood biomarkers for Alzheimer's disease.
+   * The mechanisms of cuproptosis and its links with Alzheimer's disease, suggesting copper overload as a
+     factor in neuronal loss.
+   * Neural flexibility as a potential biomarker for AD and its prediction of dementia conversion.
+   * Gene module-trait network analysis uncovering cell type specific systems and genes relevant to Alzheimer's
+     Disease.
+   * Comparative safety of cholinesterase inhibitors and memantine for dementia.
+   * Mitochondrial complex III-derived ROS amplifying immunometabolic changes in astrocytes and promoting
+     dementia pathology.
+   * Evaluation of neuroprotective potential of intranasal polydopamine nanoparticles in a rat model for
+     Alzheimer's disease.
+   * Longitudinal functional connectivity related to Alzheimer's pathology and episodic memory.
+   * Survival and mortality rates in early onset dementia.
+   * Targeting the C5-C5aR1 Axis for neuroprotection in Alzheimer's disease.

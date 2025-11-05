@@ -1,0 +1,115 @@
+> Find recent papers about CRISPR gene editing in cancer therapy
+
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✓  BioRxiv_search_preprints (tooluniverse MCP Server) {"max_results":5,"query":"CRISPR gene editing in ca… │
+│                                                                                                            │
+│    []                                                                                                      │
+│                                                                                                            │
+│ ✓  MedRxiv_search_preprints (tooluniverse MCP Server) {"max_results":5,"query":"CRISPR gene editing in ca… │
+│                                                                                                            │
+│    []                                                                                                      │
+│                                                                                                            │
+│ ✓  DOAJ_search_articles (tooluniverse MCP Server) {"query":"CRISPR gene editing in cancer therapy","max_r… │
+│                                                                                                            │
+│    ... first 226 lines hidden ...                                                                          │
+│        "venue": "Iranian Journal of Basic Medical Sciences",                                               │
+│        "url": "http://ijbms.mums.ac.ir/article_15503_f2cf48ea378621d4d26a64f04c6feafa.pdf",                │
+│        "citations": 0,                                                                                     │
+│        "open_access": true,                                                                                │
+│        "keywords": [                                                                                       │
+│          "Medicine"                                                                                        │
+│        ],                                                                                                  │
+│        "article_type": "journal-article",                                                                  │
+│        "publisher": "Mashhad University of Medical Sciences",                                              │
+│        "source": "DOAJ",                                                                                   │
+│        "data_quality": {                                                                                   │
+│          "has_abstract": true,                                                                             │
+│          "has_authors": true,                                                                              │
+│          "has_journal": true,                                                                              │
+│          "has_year": true,                                                                                 │
+│          "has_doi": true,                                                                                  │
+│          "has_citations": false,                                                                           │
+│          "has_keywords": true,                                                                             │
+│          "has_url": true                                                                                   │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    ]                                                                                                       │
+│                                                                                                            │
+│ ✓  Crossref_search_works (tooluniverse MCP Server) {"query":"CRISPR gene editing in cancer therapy","filt… │
+│                                                                                                            │
+│    ... first 129 lines hidden ...                                                                          │
+│        "journal": "Human Gene Therapy",                                                                    │
+│        "year": 2025,                                                                                       │
+│        "doi": "10.1089/hum.2024.262",                                                                      │
+│        "url": "https://doi.org/10.1089/hum.2024.262",                                                      │
+│        "citations": 0,                                                                                     │
+│        "open_access": true,                                                                                │
+│        "keywords": "Keywords not available",                                                               │
+│        "article_type": "journal-article",                                                                  │
+│        "publisher": "Mary Ann Liebert Inc",                                                                │
+│        "source": "Crossref",                                                                               │
+│        "data_quality": {                                                                                   │
+│          "has_abstract": false,                                                                            │
+│          "has_authors": true,                                                                              │
+│          "has_journal": true,                                                                              │
+│          "has_year": true,                                                                                 │
+│          "has_doi": true,                                                                                  │
+│          "has_citations": false,                                                                           │
+│          "has_keywords": false,                                                                            │
+│          "has_url": true                                                                                   │
+│        }                                                                                                   │
+│      }                                                                                                     │
+│    ]                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ I have found more recent papers about CRISPR gene editing in cancer therapy from DOAJ (Directory of Open
+  Access Journals) and Crossref.
+
+  From DOAJ:
+
+   1. Title: Quantitative functional profiling of ERCC2 mutations deciphers cisplatin sensitivity in bladder
+      cancer
+       * Authors: Judit Börcsök, et al.
+       * Year: 2025
+       * Journal: The Journal of Clinical Investigation
+       * URL: https://doi.org/10.1172/JCI186688
+   2. Title: Revolutionizing cancer treatment: enhancing CAR-T cell therapy with CRISPR/Cas9 gene editing
+      technology
+       * Authors: Ruiyu Tao, et al.
+       * Year: 2024
+       * Journal: Frontiers in Immunology
+       * URL: https://www.frontiersin.org/articles/10.3389/fimmu.2024.1354825/full
+   3. Title: Finely tuned ionizable lipid nanoparticles for CRISPR/Cas9 ribonucleoprotein delivery and gene
+      editing
+       * Authors: San Hae Im, et al.
+       * Year: 2024
+       * Journal: Journal of Nanobiotechnology
+       * URL: https://doi.org/10.1186/s12951-024-02427-2
+
+  From Crossref:
+
+   1. Title: The use of CRISPR/Cas9 gene editing in cancer research and therapy
+       * Authors: ahmed malik
+       * Year: 2023
+       * URL: https://doi.org/10.31219/osf.io/2kcvg
+   2. Title: Gene therapy and gene editing in human disease: CRISPR and beyond
+       * Authors: Sarah Sabin
+       * Year: 2023
+       * URL: https://doi.org/10.58445/rars.484
+   3. Title: Remote-Controlled Gene Editing: Integrating Electrogenetics with CRISPR for Precision Therapy
+       * Authors: Mohammad Mahboob Kanafi
+       * Year: 2025
+       * URL: https://doi.org/10.22541/au.175026437.79607454/v1
+   4. Title: CRISPR-Cas9 in cancer therapy: Revolutionizing oncology through targeted gene editing
+       * Authors: Huinan Deng
+       * Year: 2024
+       * Journal: E3S Web of Conferences
+       * URL: https://doi.org/10.1051/e3sconf/202455305046
+   5. Title: Progress, Applications and Prospects of CRISPR-Based Genome Editing Technology in Gene Therapy for
+      Cancer and Sickle Cell Disease
+       * Authors: Sha-sha Zang, et al.
+       * Year: 2025
+       * Journal: Human Gene Therapy
+       * URL: https://doi.org/10.1089/hum.2024.262
+
+  BioRxiv and MedRxiv did not return any results for this query. I can search in other databases if you would
+  like.
