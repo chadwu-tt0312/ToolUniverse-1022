@@ -1,0 +1,1424 @@
+# ToolUniverse 專案說明文件
+
+## 1. 專案用途、核心功能與實際應用場景
+
+### 專案用途
+
+**ToolUniverse** 是一個讓 AI 模型（LLM，Large Language Model）能夠使用科學研究工具的系統。簡單來說，它就像是一個「工具庫管理員」，讓 AI 能夠查詢科學資料庫、執行分析、取得研究結果。
+
+### 為什麼需要 ToolUniverse？
+
+想像一下，你問 ChatGPT：「高血壓有哪些相關的蛋白質？」如果沒有 ToolUniverse，AI 只能根據訓練資料給出一般性的回答。但有了 ToolUniverse，AI 可以：
+
+1. **自動選擇合適的工具**：從 600+ 個科學工具中找出能查詢疾病相關蛋白質的工具
+2. **實際查詢資料庫**：連接到 OpenTargets 等真實的科學資料庫
+3. **取得最新資料**：回傳基於實際資料的準確答案，而不是僅憑記憶回答
+
+### 核心功能
+
+1. **工具整合**：整合超過 600 個科學工具，包括：
+   - 科學資料庫（如 UniProt、ChEMBL、OpenTargets、PubChem）
+   - 機器學習模型（如蛋白質結構預測、藥物性質預測）
+   - 文獻搜尋系統（如 PubMed、Europe PMC、Semantic Scholar）
+   - 臨床資料庫（如 FDA 藥物標籤、臨床試驗資料）
+
+2. **統一介面**：所有工具使用相同的格式（AI-Tool Interaction Protocol），讓 AI 容易理解與使用
+
+3. **智能工具發現**：AI 可以用自然語言描述需求（例如「我想找與癌症相關的基因」），系統會自動推薦合適的工具。支援三種搜尋方式：
+   - **Tool_Finder_LLM**：使用 LLM 進行語義理解（成本優化）
+   - **Tool_RAG**：基於嵌入向量的相似度搜尋
+   - **Tool_Finder_Keyword**：關鍵字匹配（備用方案）
+
+4. **工具組合**：可以將多個工具串接起來，完成複雜的研究工作流程
+
+5. **多模型支援**：支援任何 LLM（GPT、Claude、Gemini、Qwen、DeepSeek 等），無需額外訓練或微調
+
+### 實際應用場景
+
+#### 藥物發現（Drug Discovery）
+- 找出疾病相關的蛋白質（target identification）
+- 搜尋候選藥物（compound screening）
+- 預測藥物性質（ADMET prediction）
+- 分析藥物安全性（safety analysis）
+
+**範例**：研究高膽固醇血症的治療方案
+1. 查詢疾病相關的蛋白質標靶
+2. 搜尋針對這些標靶的已知藥物
+3. 預測候選藥物的吸收、分布、代謝、排泄、毒性（ADMET）性質
+4. 分析臨床試驗結果
+
+#### 文獻研究（Literature Research）
+- 自動搜尋相關論文
+- 整理研究證據
+- 分析文獻品質
+- 生成研究摘要
+
+**範例**：研究某個基因的功能
+1. 在 PubMed 搜尋相關論文
+2. 使用 Semantic Scholar 找出高引用論文
+3. 分析論文中的實驗結果
+4. 生成綜合摘要
+
+#### 資料分析（Data Analysis）
+- 查詢基因資料（genomics）
+- 分析蛋白質結構（structural biology）
+- 預測分子性質（molecular properties）
+- 視覺化分子結構（3D visualization）
+
+**範例**：分析蛋白質功能
+1. 從 UniProt 取得蛋白質序列和功能資訊
+2. 使用 AlphaFold 預測蛋白質結構
+3. 視覺化 3D 結構
+4. 分析與其他蛋白質的相互作用
+
+#### 臨床研究（Clinical Research）
+- 查詢藥物資訊
+- 分析臨床試驗結果
+- 查詢臨床指南
+- 分析不良事件報告
+
+**範例**：評估藥物安全性
+1. 查詢 FDA 藥物標籤資訊
+2. 分析 FAERS（不良事件報告系統）資料
+3. 查詢相關臨床試驗
+4. 生成安全性評估報告
+
+---
+
+## 2. 專案的 Input/Output
+
+### Input（輸入）
+
+#### 方式一：透過 Python 程式碼
+
+```python
+from tooluniverse import ToolUniverse
+
+tu = ToolUniverse()
+tu.load_tools()  # 載入所有工具
+
+# 使用工具
+result = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {"efoId": "EFO_0000537"}  # 高血壓的 ID
+})
+```
+
+#### 方式二：透過 AI 模型（如 ChatGPT、Claude、Gemini）
+
+使用者用自然語言提問，AI 自動選擇並呼叫工具。例如：
+- 使用者：「高血壓有哪些相關的蛋白質？」
+- AI 自動選擇 `OpenTargets_get_associated_targets_by_disease_efoId` 工具
+- AI 自動填入參數（將「高血壓」轉換為 EFO ID）
+
+#### 方式三：透過 MCP（Model Context Protocol）伺服器
+
+```bash
+# 啟動 MCP 伺服器
+tooluniverse-smcp --port 7000
+
+# AI 模型透過 MCP 協議與 ToolUniverse 通訊
+```
+
+### Output（輸出）
+
+#### 工具執行結果
+
+- **格式**：結構化資料（JSON）
+- **內容**：根據工具類型而異
+
+**範例 1**：查詢高血壓相關蛋白質
+```json
+{
+  "data": {
+    "associatedTargets": {
+      "rows": [
+        {
+          "target": {
+            "id": "ENSG00000139618",
+            "approvedName": "angiotensin I converting enzyme"
+          },
+          "score": 0.95
+        },
+        {
+          "target": {
+            "id": "ENSG00000135744",
+            "approvedName": "angiotensin II receptor type 1"
+          },
+          "score": 0.89
+        }
+      ]
+    }
+  }
+}
+```
+
+**範例 2**：查詢蛋白質功能
+```json
+{
+  "function": "Catalyzes the conversion of angiotensin I to angiotensin II",
+  "accession": "P12821",
+  "gene": "ACE"
+}
+```
+
+#### 最終產出成果
+
+1. **研究報告**：整合多個工具結果的分析報告
+   - 例如：藥物發現工作流程報告，包含標靶識別、候選藥物篩選、性質預測等結果
+
+2. **資料視覺化**：
+   - 2D/3D 分子結構圖
+   - 蛋白質結構視覺化
+   - 資料分析圖表
+
+3. **決策建議**：基於資料的分析與建議
+   - 例如：推薦哪些候選藥物值得進一步研究
+
+4. **工作流程記錄**：完整的研究步驟與結果
+   - 記錄使用的工具
+   - 記錄輸入參數
+   - 記錄輸出結果
+   - 記錄錯誤與異常
+
+### 用途範例
+
+#### 範例 1：藥物發現流程
+
+**輸入**：
+```python
+# 1. 查詢疾病相關標靶
+result1 = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {"efoId": "EFO_0000537"}  # 高血壓
+})
+
+# 2. 查詢針對標靶的藥物
+result2 = tu.run({
+    "name": "OpenTargets_get_associated_drugs_by_target_ensemblID",
+    "arguments": {"ensemblID": "ENSG00000139618"}  # ACE 基因
+})
+
+# 3. 預測藥物性質
+result3 = tu.run({
+    "name": "ADMETAI_predict_toxicity",
+    "arguments": {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O"}  # 阿司匹林
+})
+```
+
+**輸出**：
+- 標靶列表（含相關性分數）
+- 候選藥物列表
+- ADMET 預測結果（毒性、吸收率等）
+
+#### 範例 2：文獻搜尋與分析
+
+**輸入**：
+```python
+# 1. 搜尋相關論文
+result1 = tu.run({
+    "name": "PubMed_search_articles",
+    "arguments": {"query": "hypertension AND ACE inhibitor", "limit": 10}
+})
+
+# 2. 取得論文摘要
+result2 = tu.run({
+    "name": "SemanticScholar_search_papers",
+    "arguments": {"query": "angiotensin converting enzyme", "limit": 5}
+})
+```
+
+**輸出**：
+- 論文標題、作者、摘要
+- 引用次數
+- 相關論文推薦
+
+---
+
+## 3. 本專案使用的 LLM
+
+### LLM 使用位置
+
+ToolUniverse 在多個地方使用 LLM：
+
+#### 1. Tool_Finder_LLM（工具發現）
+
+**位置**：`src/tooluniverse/tools/Tool_Finder_LLM.py`
+
+**用途**：使用 LLM 理解使用者的自然語言描述，從 600+ 工具中推薦合適的工具
+
+**使用的 LLM**：
+- 預設：`gpt-4o-1120`（OpenAI）
+- 可配置：支援 ChatGPT、OpenRouter、Gemini、VLLM
+
+**產生結果範例**：
+```json
+{
+  "tools": [
+    {
+      "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+      "description": "Get targets associated with a disease",
+      "relevance_score": 0.95,
+      "reason": "This tool directly matches the user's query about disease-protein associations"
+    },
+    {
+      "name": "UniProt_get_function_by_accession",
+      "description": "Get protein function information",
+      "relevance_score": 0.78,
+      "reason": "Can provide additional context about identified proteins"
+    }
+  ]
+}
+```
+
+#### 2. AgenticTool（智能工具）
+
+**位置**：`src/tooluniverse/agentic_tool.py`
+
+**用途**：需要主觀判斷或創意分析的任務，例如：
+- 文獻品質評估
+- 研究結果解釋
+- 工具規格生成
+- 工具優化建議
+
+**使用的 LLM**：
+- 預設：`o4-mini-0416`（OpenAI）
+- 可配置：支援多種 LLM 提供商
+
+**產生結果範例**：
+
+**文獻品質評估**：
+```json
+{
+  "quality_score": 8.5,
+  "strengths": [
+    "Well-designed experimental methodology",
+    "Comprehensive data analysis",
+    "Clear presentation of results"
+  ],
+  "weaknesses": [
+    "Limited sample size",
+    "Lacks long-term follow-up"
+  ],
+  "recommendations": "Consider expanding sample size and adding longitudinal data"
+}
+```
+
+**工具規格生成**：
+```json
+{
+  "type": "CustomTool",
+  "name": "ProteinSequenceAnalyzer",
+  "description": "Analyzes protein sequences for functional domains",
+  "parameter": {
+    "type": "object",
+    "properties": {
+      "sequence": {"type": "string", "description": "Protein sequence in FASTA format"}
+    }
+  },
+  "implementation": {
+    "source_code": "def analyze_sequence(sequence): ...",
+    "dependencies": ["biopython"]
+  }
+}
+```
+
+#### 3. 多代理工具（Multi-Agent Tools）
+
+**位置**：`src/tooluniverse/data/agentic_tools.json`
+
+**用途**：複雜的科學工作流程，需要多步驟推理和工具組合
+
+**範例工具**：
+- `ToolSpecificationGenerator`：生成工具規格
+- `ToolSpecificationOptimizer`：優化工具描述
+- `ToolCompatibilityAnalyzer`：分析工具相容性
+- `ScientificTextSummarizer`：科學文本摘要
+- `MedicalLiteratureReviewer`：醫學文獻審查
+
+**產生結果範例**：
+
+**工具相容性分析**：
+```json
+{
+  "compatibility_score": 85,
+  "status": "Compatible",
+  "parameter_mappings": {
+    "target_disease_id": "source_output.disease.efoId",
+    "target_gene_id": "source_output.target.ensemblID"
+  },
+  "missing_parameters": [],
+  "recommendations": "Direct mapping available, ready for automated composition"
+}
+```
+
+### LLM 配置
+
+ToolUniverse 支援多種 LLM 配置方式：
+
+#### 方式一：環境變數
+
+```bash
+export OPENAI_API_KEY="your-key"
+export TOOLUNIVERSE_LLM_DEFAULT_PROVIDER="CHATGPT"
+export TOOLUNIVERSE_LLM_MODEL_TOOLFINDER="gpt-4o-1120"
+```
+
+#### 方式二：Space 配置檔案
+
+```yaml
+# workspace.yaml
+llm:
+  default_provider: "CHATGPT"
+  models:
+    tool_finder: "gpt-4o-1120"
+    agentic_tool: "o4-mini-0416"
+  temperature: 0.1
+```
+
+#### 方式三：程式碼配置
+
+```python
+from tooluniverse import ToolUniverse
+
+tu = ToolUniverse()
+# LLM 配置會在工具執行時自動應用
+```
+
+### LLM 使用範例
+
+#### 範例 1：使用 Tool_Finder_LLM 找工具
+
+```python
+from tooluniverse import ToolUniverse
+
+tu = ToolUniverse()
+tu.load_tools()
+
+# 使用 LLM 找工具
+tools = tu.run({
+    "name": "Tool_Finder_LLM",
+    "arguments": {
+        "description": "I want to find proteins related to hypertension",
+        "limit": 5
+    }
+})
+
+print(tools)
+# LLM 會分析描述，推薦相關工具
+```
+
+**LLM 產生的結果**：
+```json
+{
+  "tools": [
+    {
+      "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+      "relevance": 0.95,
+      "reason": "Directly matches the query for disease-protein associations"
+    }
+  ]
+}
+```
+
+#### 範例 2：使用 AgenticTool 進行文獻審查
+
+```python
+result = tu.run({
+    "name": "MedicalLiteratureReviewer",
+    "arguments": {
+        "paper_title": "ACE inhibitors in hypertension treatment",
+        "paper_abstract": "...",
+        "review_focus": "methodology_and_results"
+    }
+})
+
+# LLM 會分析論文品質並給出建議
+```
+
+**LLM 產生的結果**：
+```json
+{
+  "overall_quality": 8.2,
+  "methodology_score": 9.0,
+  "results_interpretation": 7.5,
+  "recommendations": [
+    "Consider including more diverse patient populations",
+    "Long-term follow-up data would strengthen conclusions"
+  ]
+}
+```
+
+---
+
+## 4. 配置參數說明
+
+ToolUniverse 提供多種配置參數，可調整系統行為：
+
+### 4.1 工具載入配置
+
+#### `tool_files`
+- **類型**：`dict` 或 `None`
+- **預設值**：`default_tool_files`（包含所有預設工具檔案）
+- **說明**：指定要載入的工具配置檔案
+- **影響**：
+  - 決定載入哪些工具類別
+  - 減少載入時間（只載入需要的工具）
+  - 降低記憶體使用
+
+**範例**：
+```python
+custom_tool_files = {
+    "uniprot": "path/to/uniprot_tools.json",
+    "opentarget": "path/to/opentarget_tools.json"
+}
+tu = ToolUniverse(tool_files=custom_tool_files)
+```
+
+#### `keep_default_tools`
+- **類型**：`bool`
+- **預設值**：`True`
+- **說明**：是否保留預設工具
+- **影響**：
+  - `True`：保留所有預設工具
+  - `False`：只載入 `tool_files` 指定的工具
+
+### 4.2 日誌配置
+
+#### `log_level`
+- **類型**：`str`
+- **預設值**：`None`（使用預設日誌級別）
+- **選項**：`"DEBUG"`, `"INFO"`, `"WARNING"`, `"ERROR"`, `"CRITICAL"`
+- **說明**：設定日誌輸出級別
+- **影響**：
+  - `DEBUG`：顯示詳細除錯資訊（包含工具執行細節）
+  - `INFO`：顯示一般資訊（工具載入、執行狀態）
+  - `WARNING`：只顯示警告和錯誤
+  - `ERROR`：只顯示錯誤訊息
+
+**範例**：
+```python
+tu = ToolUniverse(log_level="DEBUG")  # 顯示詳細除錯資訊
+```
+
+### 4.3 Hooks 配置
+
+#### `hooks_enabled`
+- **類型**：`bool`
+- **預設值**：`False`
+- **說明**：是否啟用輸出處理 hooks
+- **影響**：
+  - `True`：工具輸出會經過 hooks 處理（例如自動摘要、儲存檔案）
+  - `False`：直接返回原始輸出
+
+#### `hook_type`
+- **類型**：`str` 或 `list`
+- **預設值**：`None`
+- **選項**：`"SummarizationHook"`, `"FileSaveHook"`, 或兩者的列表
+- **說明**：選擇要使用的 hook 類型
+- **影響**：
+  - `SummarizationHook`：自動摘要長輸出
+  - `FileSaveHook`：自動將輸出儲存到檔案
+
+**範例**：
+```python
+tu = ToolUniverse(
+    hooks_enabled=True,
+    hook_type=["SummarizationHook", "FileSaveHook"]
+)
+```
+
+#### `hook_config`
+- **類型**：`dict` 或 `None`
+- **預設值**：`None`
+- **說明**：自訂 hook 配置
+- **影響**：可精細控制 hook 行為
+
+**範例**：
+```python
+hook_config = {
+    "hooks": [{
+        "name": "my_summarizer",
+        "type": "SummarizationHook",
+        "enabled": True,
+        "conditions": {
+            "output_length": {"operator": ">", "threshold": 5000}
+        },
+        "hook_config": {
+            "chunk_size": 30000,
+            "focus_areas": "key_findings_and_results"
+        }
+    }]
+}
+tu = ToolUniverse(hooks_enabled=True, hook_config=hook_config)
+```
+
+### 4.4 MCP 伺服器配置
+
+#### `--port`
+- **類型**：`int`
+- **預設值**：`7000`
+- **說明**：HTTP/SSE 伺服器埠號
+- **影響**：決定伺服器監聽的埠號
+
+#### `--host`
+- **類型**：`str`
+- **預設值**：`"0.0.0.0"`
+- **說明**：綁定的主機位址
+- **影響**：
+  - `"0.0.0.0"`：允許外部連接
+  - `"127.0.0.1"`：只允許本機連接
+
+#### `--max-workers`
+- **類型**：`int`
+- **預設值**：`5`
+- **說明**：並發執行工具的工作執行緒數
+- **影響**：
+  - 較高值：可同時執行更多工具，但消耗更多資源
+  - 較低值：資源使用較少，但並發能力較低
+  - 建議範圍：5-20（根據伺服器容量調整）
+
+#### `--transport`
+- **類型**：`str`
+- **預設值**：`"http"`
+- **選項**：`"http"`, `"stdio"`, `"sse"`
+- **說明**：通訊協定類型
+- **影響**：
+  - `http`：標準 HTTP 請求/回應
+  - `stdio`：標準輸入/輸出（適合 CLI 整合）
+  - `sse`：Server-Sent Events（適合即時更新）
+
+### 4.5 工具選擇配置
+
+#### `--categories`
+- **類型**：`list[str]`
+- **預設值**：`None`（載入所有類別）
+- **說明**：只載入指定的工具類別
+- **影響**：
+  - 減少載入時間
+  - 降低記憶體使用
+  - 限制可用工具範圍
+
+**範例**：
+```bash
+tooluniverse-smcp --categories uniprot ChEMBL opentarget
+```
+
+#### `--exclude-categories`
+- **類型**：`list[str]`
+- **預設值**：`None`
+- **說明**：排除指定的工具類別
+- **影響**：從載入列表中移除不需要的類別
+
+#### `--include-tools`
+- **類型**：`list[str]`
+- **預設值**：`None`
+- **說明**：只載入指定的工具
+- **影響**：精確控制載入的工具（覆蓋類別設定）
+
+#### `--exclude-tool-types`
+- **類型**：`list[str]`
+- **預設值**：`None`
+- **說明**：排除指定的工具類型
+- **影響**：例如排除所有 `ToolFinderLLM` 類型工具
+
+### 4.6 LLM 配置
+
+#### `TOOLUNIVERSE_LLM_DEFAULT_PROVIDER`
+- **類型**：`str`
+- **預設值**：`"CHATGPT"`
+- **選項**：`"CHATGPT"`, `"OPENROUTER"`, `"GEMINI"`, `"VLLM"`
+- **說明**：預設 LLM 提供商
+- **影響**：決定使用哪個 LLM 服務
+
+#### `TOOLUNIVERSE_LLM_MODEL_TOOLFINDER`
+- **類型**：`str`
+- **預設值**：`"gpt-4o-1120"`
+- **說明**：工具發現使用的模型
+- **影響**：
+  - 較強模型：更好的工具推薦準確度，但成本較高
+  - 較弱模型：成本較低，但準確度可能下降
+
+#### `TOOLUNIVERSE_LLM_TEMPERATURE`
+- **類型**：`float`
+- **預設值**：`0.1`（工具發現），`0.7`（AgenticTool）
+- **範圍**：`0.0` - `2.0`
+- **說明**：LLM 輸出的隨機性
+- **影響**：
+  - 較低值（0.1-0.3）：輸出更確定、一致（適合工具發現）
+  - 較高值（0.7-1.0）：輸出更多樣、創意（適合創意任務）
+
+### 4.7 Space 配置
+
+Space 配置檔案（YAML）可統一管理多種設定：
+
+```yaml
+name: "Drug Discovery Workspace"
+version: "1.0.0"
+
+# LLM 配置
+llm:
+  default_provider: "CHATGPT"
+  models:
+    tool_finder: "gpt-4o-1120"
+    agentic_tool: "o4-mini-0416"
+  temperature: 0.1
+
+# Hooks 配置
+hooks:
+  - name: "summarization"
+    type: "SummarizationHook"
+    enabled: true
+    conditions:
+      output_length:
+        operator: ">"
+        threshold: 5000
+
+# 工具選擇
+tools:
+  include_tools:
+    - "OpenTargets_get_associated_targets_by_disease_efoId"
+    - "ADMETAI_predict_toxicity"
+```
+
+**影響**：
+- 統一管理配置
+- 可分享給團隊成員
+- 版本控制友好
+
+---
+
+## 5. 完整執行過程步驟與系統架構
+
+### 5.1 執行過程步驟（根據範例）
+
+#### 範例：查詢高血壓相關蛋白質
+
+**步驟 1：安裝 ToolUniverse**
+
+```bash
+pip install tooluniverse
+```
+
+**步驟 2：初始化並載入工具**
+
+```python
+from tooluniverse import ToolUniverse
+
+# 初始化
+tu = ToolUniverse()
+
+# 載入工具（可選擇載入所有工具或特定類別）
+tu.load_tools()
+# 或只載入特定類別
+# tu.load_tools(categories=["opentarget", "uniprot"])
+
+print(f"✅ 已載入 {len(tu.all_tools)} 個工具")
+```
+
+**步驟 3：尋找合適的工具（可選）**
+
+```python
+# 使用關鍵字搜尋
+tools = tu.run({
+    "name": "Tool_Finder_Keyword",
+    "arguments": {
+        "description": "disease target associations",
+        "limit": 10
+    }
+})
+
+print("找到的工具：")
+for tool in tools.get("tools", []):
+    print(f"  - {tool['name']}: {tool['description']}")
+```
+
+**步驟 4：執行工具**
+
+```python
+# 查詢高血壓相關的蛋白質標靶
+result = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {
+        "efoId": "EFO_0000537"  # 高血壓的 EFO ID
+    }
+})
+
+print("結果：")
+print(result)
+```
+
+**步驟 5：處理結果（可選）**
+
+```python
+# 如果啟用了 hooks，結果可能已經過處理
+# 例如自動摘要或儲存到檔案
+
+# 手動處理結果
+if result and "data" in result:
+    targets = result["data"].get("associatedTargets", {}).get("rows", [])
+    print(f"\n找到 {len(targets)} 個相關標靶：")
+    for target in targets[:5]:  # 顯示前 5 個
+        print(f"  - {target['target']['approvedName']} (分數: {target['score']})")
+```
+
+**完整範例程式碼**：
+
+```python
+from tooluniverse import ToolUniverse
+
+# 1. 初始化
+tu = ToolUniverse()
+tu.load_tools()
+
+# 2. 尋找工具
+tools = tu.run({
+    "name": "Tool_Finder_Keyword",
+    "arguments": {"description": "disease target associations", "limit": 10}
+})
+print(f"找到 {len(tools.get('tools', []))} 個相關工具")
+
+# 3. 執行工具
+result = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {"efoId": "EFO_0000537"}  # 高血壓
+})
+
+# 4. 處理結果
+if result and "data" in result:
+    targets = result["data"].get("associatedTargets", {}).get("rows", [])
+    print(f"\n✅ 找到 {len(targets)} 個高血壓相關標靶")
+    for target in targets[:3]:
+        print(f"  - {target['target']['approvedName']}")
+```
+
+### 5.2 系統架構
+
+#### 整體架構圖
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   應用層 (Application Layer)            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │  Python API  │  │  MCP Server  │  │  Web UI      │   │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘   │
+└─────────┼─────────────────┼─────────────────┼───────────┘
+          │                 │                 │
+          │    AI-Tool Interaction Protocol   │
+          │                 │                 │
+┌─────────▼────────────────▼────────────────▼──────────┐
+│              ToolUniverse 核心層 (Core Layer)           │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │         ToolUniverse Engine                       │  │
+│  │  - 工具載入 (Tool Loading)                        │  │
+│  │  - 工具註冊 (Tool Registration)                   │  │
+│  │  - 工具路由 (Tool Routing)                        │  │
+│  │  - 工具執行 (Tool Execution)                      │  │
+│  │  - 結果處理 (Result Processing)                   │  │
+│  └───────────────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │         Tool Discovery System                     │  │
+│  │  - Tool_Finder_LLM (LLM-based)                    │  │
+│  │  - Tool_RAG (Embedding-based)                     │  │
+│  │  - Tool_Finder_Keyword (Keyword-based)            │  │
+│  └───────────────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │         Hooks System                              │  │
+│  │  - SummarizationHook                              │  │
+│  │  - FileSaveHook                                   │  │
+│  └───────────────────────────────────────────────────┘  │
+└─────────┬───────────────────────────────────────────────┘
+          │
+          │ 工具註冊與配置
+          │
+┌─────────▼──────────────────────────────────────────────┐
+│           工具實作層 (Tool Implementation Layer)        │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │  REST Tools  │  │ GraphQL Tools│  │ Custom Tools │   │
+│  │  (OpenFDA,   │  │ (OpenTargets)│  │ (Local ML    │   │
+│  │   PubChem)   │  │              │  │  Models)     │   │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘   │
+│  ┌──────┴───────┐  ┌──────┴───────┐  ┌──────┴───────┐   │
+│  │  AgenticTool │  │  MCP Tools   │  │  PackageTool │   │
+│  │  (LLM-based) │  │  (Remote)    │  │  (Software)  │   │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘   │
+└─────────┼─────────────────┼─────────────────┼───────────┘
+          │                 │                 │
+          │  HTTP/GraphQL/Local Execution     │
+          │                 │                 │
+┌─────────▼────────────────▼────────────────▼──────────┐
+│           外部服務層 (External Services Layer)          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │  資料庫      │  │  API 服務    │  │  ML 模型     │   │
+│  │  (UniProt,   │  │ (OpenTargets,│  │ (AlphaFold,  │   │
+│  │   ChEMBL)    │  │  PubChem)    │  │  ADMET-AI)   │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘   │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### 核心組件說明
+
+**1. ToolUniverse Engine**
+- **職責**：工具管理、路由、執行
+- **主要功能**：
+  - 載入工具配置
+  - 註冊工具實例
+  - 路由工具請求
+  - 執行工具並處理結果
+  - 錯誤處理與重試
+
+**2. Tool Discovery System**
+- **職責**：根據使用者描述推薦合適工具
+- **三種方法**：
+  - **Tool_Finder_LLM**：使用 LLM 理解語義（成本優化）
+  - **Tool_RAG**：基於嵌入向量的相似度搜尋
+  - **Tool_Finder_Keyword**：關鍵字匹配（備用）
+
+**3. Hooks System**
+- **職責**：處理工具輸出
+- **主要 Hooks**：
+  - **SummarizationHook**：自動摘要長輸出
+  - **FileSaveHook**：自動儲存結果到檔案
+
+**4. Tool Implementation Layer**
+- **工具類型**：
+  - **REST Tools**：透過 HTTP REST API 呼叫外部服務
+  - **GraphQL Tools**：透過 GraphQL 查詢外部服務
+  - **Custom Tools**：本地實作的工具（例如 ML 模型）
+  - **AgenticTool**：使用 LLM 的工具
+  - **MCP Tools**：透過 MCP 協議連接的遠端工具
+  - **PackageTool**：包裝現有 Python 套件的工具
+
+#### 資料流
+
+**單一工具執行流程**：
+
+```
+使用者請求
+    ↓
+ToolUniverse.run()
+    ↓
+工具路由 (Tool Routing)
+    ↓
+工具實例化 (Tool Instantiation)
+    ↓
+參數驗證 (Parameter Validation)
+    ↓
+工具執行 (Tool Execution)
+    ↓
+結果處理 (Result Processing)
+    ↓
+Hooks 處理 (Hooks Processing) [可選]
+    ↓
+返回結果
+```
+
+**工具發現流程**：
+
+```
+使用者描述
+    ↓
+Tool_Finder_LLM / Tool_RAG / Tool_Finder_Keyword
+    ↓
+工具候選列表
+    ↓
+相關性排序
+    ↓
+返回推薦工具
+```
+
+**多工具組合流程**：
+
+```
+使用者請求
+    ↓
+工具組合規劃 (Tool Composition Planning)
+    ↓
+工具 1 執行 → 結果 1
+    ↓
+工具 2 執行（使用結果 1）→ 結果 2
+    ↓
+工具 3 執行（使用結果 2）→ 結果 3
+    ↓
+整合結果
+    ↓
+返回最終結果
+```
+
+---
+
+## 6. 公司內部應用方向
+
+### 6.1 醫藥方向（Pharmaceutical）
+
+#### 藥物發現（Drug Discovery）
+- **標靶識別**：找出疾病相關的蛋白質標靶
+- **候選藥物篩選**：從資料庫中找出針對標靶的候選藥物
+- **ADMET 預測**：預測藥物的吸收、分布、代謝、排泄、毒性
+- **分子優化**：優化候選藥物的分子結構
+
+**範例**：
+```python
+# 1. 找出高血壓相關標靶
+targets = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {"efoId": "EFO_0000537"}
+})
+
+# 2. 找出針對標靶的藥物
+drugs = tu.run({
+    "name": "OpenTargets_get_associated_drugs_by_target_ensemblID",
+    "arguments": {"ensemblID": "ENSG00000139618"}
+})
+
+# 3. 預測藥物性質
+admet = tu.run({
+    "name": "ADMETAI_predict_toxicity",
+    "arguments": {"smiles": "CC(=O)OC1=CC=CC=C1C(=O)O"}
+})
+```
+
+#### 臨床研究（Clinical Research）
+- **臨床試驗設計**：查詢相關臨床試驗設計參考
+- **不良事件分析**：分析 FAERS 資料庫中的不良事件
+- **藥物安全性評估**：綜合評估藥物安全性
+- **臨床指南查詢**：查詢 WHO、NICE 等臨床指南
+
+**範例**：
+```python
+# 查詢臨床試驗
+trials = tu.run({
+    "name": "search_clinical_trials",
+    "arguments": {"condition": "hypertension", "intervention": "ACE inhibitor"}
+})
+
+# 分析不良事件
+adverse_events = tu.run({
+    "name": "FAERS_count_reactions_by_drug_event",
+    "arguments": {"medicinalproduct": "lisinopril"}
+})
+```
+
+#### 文獻研究（Literature Research）
+- **自動文獻搜尋**：搜尋相關研究論文
+- **文獻品質評估**：使用 AI 評估論文品質
+- **證據綜合**：整合多篇論文的證據
+- **研究摘要生成**：自動生成研究摘要
+
+### 6.2 其他應用方向
+
+#### 生物資訊學（Bioinformatics）
+
+**基因組學分析**：
+- 查詢基因功能
+- 分析基因變異
+- 預測蛋白質結構
+- 分析蛋白質相互作用
+
+**範例**：
+```python
+# 查詢基因功能
+gene_info = tu.run({
+    "name": "UniProt_get_function_by_accession",
+    "arguments": {"accession": "P38398"}  # BRCA1
+})
+
+# 預測蛋白質結構
+structure = tu.run({
+    "name": "alphafold2_predict_structure",
+    "arguments": {"sequence": "MKTAYIAKQR..."}
+})
+```
+
+**蛋白質組學**：
+- 查詢蛋白質表達
+- 分析蛋白質修飾
+- 預測蛋白質功能域
+
+#### 化學資訊學（Cheminformatics）
+
+**分子設計**：
+- 搜尋相似分子
+- 預測分子性質
+- 優化分子結構
+- 視覺化分子結構
+
+**範例**：
+```python
+# 搜尋相似分子
+similar = tu.run({
+    "name": "PubChem_search_compounds_by_similarity",
+    "arguments": {"smiles": "CCO", "threshold": 0.9}
+})
+
+# 視覺化分子
+visualization = tu.run({
+    "name": "visualize_molecule_3d",
+    "arguments": {"smiles": "CCO"}
+})
+```
+
+**藥物化學**：
+- 查詢化合物資訊
+- 分析結構活性關係
+- 預測藥物性質
+
+#### 資料科學與分析（Data Science）
+
+**資料整合**：
+- 整合多個資料庫的資料
+- 資料清理與標準化
+- 資料視覺化
+
+**範例**：
+```python
+# 整合多個資料來源
+# 1. 從 OpenTargets 取得疾病-標靶關聯
+targets = tu.run({
+    "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+    "arguments": {"efoId": "EFO_0000537"}
+})
+
+# 2. 從 UniProt 取得蛋白質詳細資訊
+for target in targets[:5]:
+    protein_info = tu.run({
+        "name": "UniProt_get_entry_by_accession",
+        "arguments": {"accession": target["uniprot_id"]}
+    })
+```
+
+**機器學習**：
+- 使用內建的 ML 模型進行預測
+- 整合外部 ML 服務
+- 模型評估與優化
+
+#### 研究自動化（Research Automation）
+
+**工作流程自動化**：
+- 自動執行研究流程
+- 結果自動整理
+- 報告自動生成
+
+**範例**：
+```python
+# 自動化藥物發現流程
+workflow = [
+    {"name": "OpenTargets_get_associated_targets_by_disease_efoId", ...},
+    {"name": "OpenTargets_get_associated_drugs_by_target_ensemblID", ...},
+    {"name": "ADMETAI_predict_toxicity", ...},
+    {"name": "search_clinical_trials", ...}
+]
+
+results = []
+for step in workflow:
+    result = tu.run(step)
+    results.append(result)
+    # 自動將結果傳遞給下一步
+```
+
+**品質控制**：
+- 自動驗證資料品質
+- 檢查結果一致性
+- 生成品質報告
+
+#### 教育與培訓（Education & Training）
+
+**教學工具**：
+- 幫助學生學習生物資訊學
+- 提供互動式查詢介面
+- 自動生成教學範例
+
+**研究訓練**：
+- 訓練研究人員使用科學資料庫
+- 提供最佳實踐範例
+- 自動化重複性任務
+
+#### 知識管理（Knowledge Management）
+
+**知識庫建構**：
+- 整合多個資料來源
+- 建立企業知識庫
+- 自動更新知識內容
+
+**範例**：
+```python
+# 定期更新疾病-標靶知識庫
+diseases = ["EFO_0000537", "EFO_0000249", ...]  # 高血壓、糖尿病等
+knowledge_base = {}
+
+for disease_id in diseases:
+    targets = tu.run({
+        "name": "OpenTargets_get_associated_targets_by_disease_efoId",
+        "arguments": {"efoId": disease_id}
+    })
+    knowledge_base[disease_id] = targets
+```
+
+**智慧搜尋**：
+- 使用自然語言搜尋知識庫
+- 自動推薦相關內容
+- 生成知識摘要
+
+---
+
+## 7. 建議新增案例
+
+### 建議案例：環境毒理學研究（Environmental Toxicology Research）
+
+#### 為什麼選擇這個案例？
+
+1. **實際需求**：環境污染物對人體健康的影響是重要的公共衛生議題
+2. **跨領域整合**：需要整合化學、生物學、醫學多個領域的資料
+3. **工具豐富**：ToolUniverse 已有相關工具（PubChem、UniProt、OpenTargets、FAERS 等）
+4. **實用價值**：可應用於環境監測、風險評估、政策制定
+
+#### 案例描述
+
+**研究問題**：評估某種環境污染物（例如：雙酚 A，BPA）對人體健康的潛在影響
+
+**研究流程**：
+
+1. **化學物質識別**
+   - 查詢化學物質的結構和性質
+   - 搜尋相似化學物質
+
+2. **標靶識別**
+   - 找出化學物質可能作用的蛋白質標靶
+   - 分析標靶的功能和相關疾病
+
+3. **毒性預測**
+   - 預測化學物質的毒性
+   - 查詢已知的不良事件報告
+
+4. **文獻研究**
+   - 搜尋相關研究論文
+   - 分析研究證據
+
+5. **風險評估**
+   - 綜合所有資訊進行風險評估
+   - 生成評估報告
+
+#### 實作範例
+
+```python
+from tooluniverse import ToolUniverse
+
+tu = ToolUniverse()
+tu.load_tools()
+
+# 研究目標：評估雙酚 A (BPA) 的健康風險
+
+# 步驟 1：查詢化學物質資訊
+bpa_info = tu.run({
+    "name": "PubChem_get_CID_by_compound_name",
+    "arguments": {"compound_name": "bisphenol A"}
+})
+
+cid = bpa_info.get("CID")
+print(f"BPA 的 PubChem CID: {cid}")
+
+# 取得 BPA 的 SMILES
+bpa_properties = tu.run({
+    "name": "PubChem_get_compound_properties_by_CID",
+    "arguments": {"CID": cid}
+})
+
+smiles = bpa_properties.get("CanonicalSMILES")
+print(f"BPA 的 SMILES: {smiles}")
+
+# 步驟 2：預測毒性
+toxicity = tu.run({
+    "name": "ADMETAI_predict_toxicity",
+    "arguments": {"smiles": smiles}
+})
+
+print(f"毒性預測結果: {toxicity}")
+
+# 步驟 3：查詢不良事件報告
+adverse_events = tu.run({
+    "name": "FAERS_count_reactions_by_drug_event",
+    "arguments": {"medicinalproduct": "bisphenol A"}
+})
+
+print(f"不良事件報告數: {len(adverse_events.get('results', []))}")
+
+# 步驟 4：搜尋相關文獻
+literature = tu.run({
+    "name": "PubMed_search_articles",
+    "arguments": {
+        "query": "bisphenol A AND health effects",
+        "limit": 10
+    }
+})
+
+print(f"找到 {len(literature.get('articles', []))} 篇相關論文")
+
+# 步驟 5：搜尋相似化學物質（可能有類似毒性）
+similar_compounds = tu.run({
+    "name": "PubChem_search_compounds_by_similarity",
+    "arguments": {
+        "smiles": smiles,
+        "threshold": 0.8
+    }
+})
+
+print(f"找到 {len(similar_compounds.get('compounds', []))} 個相似化合物")
+
+# 步驟 6：綜合分析（使用 AgenticTool）
+analysis = tu.run({
+    "name": "ScientificTextSummarizer",
+    "arguments": {
+        "text": f"""
+        化學物質：雙酚 A (BPA)
+        PubChem CID: {cid}
+        毒性預測：{toxicity}
+        不良事件報告數：{len(adverse_events.get('results', []))}
+        相關論文數：{len(literature.get('articles', []))}
+        相似化合物數：{len(similar_compounds.get('compounds', []))}
+        """,
+        "focus": "health_risk_assessment"
+    }
+})
+
+print("綜合分析結果：")
+print(analysis)
+```
+
+#### 預期產出
+
+1. **化學物質資訊報告**：結構、性質、相似化合物
+2. **毒性預測報告**：ADMET 預測結果
+3. **不良事件分析**：FAERS 資料分析
+4. **文獻綜述**：相關研究論文摘要
+5. **風險評估報告**：綜合所有資訊的風險評估
+
+#### 擴展方向
+
+1. **多種污染物比較**：比較多種環境污染物的風險
+2. **長期追蹤**：定期更新資料並追蹤變化
+3. **地理分析**：結合地理資訊分析污染分布
+4. **政策建議**：基於風險評估提出政策建議
+
+---
+
+## 8. 需要補充說明的部分
+
+### 8.1 技術細節
+
+#### API 金鑰配置
+- **說明**：部分工具需要 API 金鑰才能使用
+- **配置方式**：
+  ```bash
+  export OPENAI_API_KEY="your-key"
+  export OPENTARGETS_API_KEY="your-key"  # 可選，用於提高配額
+  ```
+- **影響**：沒有 API 金鑰時，部分工具可能無法使用或有限制
+
+#### 工具執行錯誤處理
+- **說明**：工具執行可能失敗（網路問題、API 限制等）
+- **處理方式**：
+  ```python
+  try:
+      result = tu.run({...})
+  except Exception as e:
+      print(f"錯誤: {e}")
+      # 可以重試或使用備用工具
+  ```
+
+#### 工具執行時間
+- **說明**：不同工具執行時間差異很大
+- **快速工具**：資料庫查詢（通常 < 1 秒）
+- **慢速工具**：ML 模型預測（可能數秒到數分鐘）
+- **建議**：使用非同步執行或多執行緒處理多個工具
+
+### 8.2 最佳實踐
+
+#### 工具選擇策略
+1. **先使用 Tool_Finder**：不確定用哪個工具時，先用工具發現功能
+2. **優先使用簡單工具**：能解決問題的最簡單工具
+3. **組合工具**：複雜任務使用多個工具組合
+
+#### 效能優化
+1. **只載入需要的工具**：使用 `categories` 參數只載入需要的工具類別
+2. **快取結果**：重複查詢時使用快取
+3. **並發執行**：多個獨立工具可並發執行
+
+#### 錯誤處理
+1. **驗證輸入**：確保輸入參數正確
+2. **處理異常**：使用 try-except 處理錯誤
+3. **提供備用方案**：主要工具失敗時使用備用工具
+
+### 8.3 限制與注意事項
+
+#### 資料準確性
+- **說明**：ToolUniverse 提供的資料來自外部資料庫，不保證 100% 準確
+- **建議**：重要決策前應驗證資料來源
+
+#### API 限制
+- **說明**：部分 API 有速率限制
+- **影響**：大量查詢可能被限制
+- **解決方案**：使用 API 金鑰提高配額，或控制查詢頻率
+
+#### 成本考量
+- **LLM 使用成本**：使用 Tool_Finder_LLM 或 AgenticTool 會產生 LLM API 成本
+- **建議**：
+  - 簡單任務使用關鍵字搜尋而非 LLM
+  - 批量處理時注意成本
+
+### 8.4 進階功能
+
+#### 自訂工具開發
+- **說明**：可以開發自訂工具並整合到 ToolUniverse
+- **參考**：`docs/expand_tooluniverse/local_tool_registration.html`
+
+#### MCP 整合
+- **說明**：可以透過 MCP 協議整合到 Claude Desktop、Gemini CLI 等
+- **參考**：`docs/guide/mcp_support.html`
+
+#### Space 配置
+- **說明**：使用 Space 配置檔案統一管理工具、LLM、Hooks 設定
+- **參考**：`examples/spaces/` 目錄中的範例
+
+### 8.5 學習資源
+
+#### 官方文件
+- **文件網站**：<https://zitniklab.hms.harvard.edu/ToolUniverse/>
+- **GitHub**：<https://github.com/mims-harvard/ToolUniverse>
+- **範例程式碼**：`examples/` 目錄
+
+#### 社群支援
+- **Slack**：<https://join.slack.com/t/tooluniversehq/shared_invite/zt-3dic3eoio-5xxoJch7TLNibNQn5_AREQ>
+- **GitHub Issues**：報告問題或提出建議
+- **WeChat**：<https://aiscientist.tools/wechat>
+
+---
+
+## 9. 總結
+
+ToolUniverse 是一個強大的科學研究工具整合平台，讓 AI 模型能夠使用 600+ 科學工具進行研究。它提供了統一的介面、智能工具發現、工具組合等功能，可應用於藥物發現、文獻研究、資料分析等多個領域。
+
+### 關鍵優勢
+
+1. **易用性**：統一的介面，無需學習每個工具的細節
+2. **智能性**：AI 自動推薦合適的工具
+3. **擴展性**：可輕鬆新增自訂工具
+4. **靈活性**：支援多種 LLM 和整合方式
+
+### 適用對象
+
+- **研究人員**：加速科學研究流程
+- **資料科學家**：整合多個資料來源
+- **開發人員**：建構 AI 科學家系統
+- **學生**：學習科學資料庫使用
+
+### 下一步
+
+1. **安裝試用**：`pip install tooluniverse`
+2. **閱讀文件**：查看官方文件了解詳細功能
+3. **嘗試範例**：執行 `examples/` 目錄中的範例
+4. **加入社群**：參與 Slack 討論獲取幫助
+
+---
+
+*文件生成時間：2025年11月*
+*ToolUniverse 版本：1.0.10*
